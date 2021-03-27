@@ -33,7 +33,7 @@ How to setup `Vagrant` with `Hyper-V` and `WSL2`
     ```
       ![](!images/3.PNG)
 
-4. Installing `Vagrant`.
+4. Install `Vagrant`.
 
     `Vagrant` must be installed in `WSL` and `Windows`. Important note - version must be the same! 
 
