@@ -1,0 +1,14 @@
+- name: include vars
+  include_vars: "./vars/main.yml"
+
+- name: check if all required variables are set
+  fail:
+    msg: "{{ item }} is not defined or empty"
+  when: item not in vars or vars[item] == ""
+  with_items:
+    - listen_port
+    - reverse_proxy_redirect
+    - reverse_proxy_service_host
+    - reverse_proxy_service_port
+    - wordpress_project_directory
+    - local_ip

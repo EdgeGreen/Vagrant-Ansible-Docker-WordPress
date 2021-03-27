@@ -1,0 +1,17 @@
+[host]
+localhost ansible_connection=local
+
+[nginx]
+172.20.0.2
+
+[mysql]
+172.20.0.3
+
+[wordpress]
+172.20.0.4
+
+[all:vars]
+ansible_connection=ssh 
+ansible_ssh_user=root
+ansible_ssh_pass=root
+ansible_python_interpreter=/usr/bin/python3

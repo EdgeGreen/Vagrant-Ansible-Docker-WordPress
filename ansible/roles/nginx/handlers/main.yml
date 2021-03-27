@@ -1,0 +1,4 @@
+---
+- name: test nginx configuration
+  become: yes
+  command: nginx -t

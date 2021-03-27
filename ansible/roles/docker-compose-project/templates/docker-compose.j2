@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+    nginx:
+        image: edgegreen/ubuntu-sshd:2004
+        ports:
+            - '8086:8086'
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+            - ./logs/nginx:/var/log/nginx
+            - ./wordpress:/var/www/html
+        restart: always
+        networks:
+          static-network:
+            ipv4_address: 172.20.0.2
+
+    mysql:
+        image: edgegreen/ubuntu-sshd:2004
+        ports:
+          - '3306:3306'
+        volumes:
+          - ./wp-db-data:/var/lib/mysql
+        restart: always
+        networks:
+          static-network:
+            ipv4_address: 172.20.0.3
+
+    wordpress:
+        image: edgegreen/ubuntu-sshd:2004
+        ports:
+          - '9000:9000'
+        volumes:
+          - ./wordpress:/var/www/html
+        depends_on:
+          - mysql  
+        networks:
+          static-network:
+            ipv4_address: 172.20.0.4
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

@@ -1,0 +1,94 @@
+---
+#--------------------------------------------------------------------------
+# Host machine
+#--------------------------------------------------------------------------  
+- hosts: host
+  become: yes
+  gather_facts: yes
+  serial: 1
+
+  roles:
+     - role: docker
+       vars:
+          docker_edition: 'ce'
+          docker_service_state: started
+          docker_service_enabled: true
+          docker_users: [vagrant]
+          docker_compose_version: '1.28.0'
+
+     - role: docker-compose-project
+       vars:
+          system_user: vagrant
+          compose_project_dir: /home/{{ system_user }}/compose-wordpress
+
+     - role: get-local-ip
+       vars:
+          role_folder_name: nginx
+
+#--------------------------------------------------------------------------
+# Nginx docker container
+#--------------------------------------------------------------------------
+- hosts: nginx
+  become: yes
+  gather_facts: yes
+  serial: 1
+
+  roles:
+    - role: common
+
+    - role: nginx
+      vars:
+         listen_port: 8086
+         reverse_proxy_service_port: 9000
+         reverse_proxy_service_host: 172.20.0.4
+         reverse_proxy_redirect: yes
+         wordpress_project_directory: /var/www/html
+
+#--------------------------------------------------------------------------
+# MySql docker container
+#-------------------------------------------------------------------------- 
+- hosts: mysql
+  become: yes
+  gather_facts: yes
+  serial: 1
+
+  roles:
+    - role: common
+
+    - role: mysql
+      vars:
+         mariadb_bind_address: 0.0.0.0
+         mariadb_bind_port: 3306
+         mariadb_databases:
+           - name: wordpress
+             encoding: utf8
+         mariadb_users:
+           - name: vagrant
+             host: 172.20.0.4
+             password: vagrant12345
+             priv: '*.*:ALL,GRANT'
+         mariadb_log_bin: /var/log/mysql/mysql-bin.log         
+
+#--------------------------------------------------------------------------
+# WordPress docker container
+#--------------------------------------------------------------------------
+- hosts: wordpress
+  become: yes
+  gather_facts: yes
+  serial: 1
+
+  roles:
+    - role: common
+
+    - role: wordpress
+      vars:
+         wp_version: '5.0.3'
+         wp_sitename: html
+         wp_apache_port: 9000
+         wp_admin_email: 'admin@example.com'
+         wp_db_host: '172.20.0.3'
+         wp_db_name: wordpress
+         wp_db_user: vagrant
+         wp_db_password: vagrant12345
+         wp_db_charset: 'utf8'
+         wp_table_prefix: 'wp_'

@@ -1,0 +1,12 @@
+---
+listen_port: 8080
+
+reverse_proxy_redirect: yes
+
+reverse_proxy_site_name: my_example_site
+reverse_proxy_certificate_contact_email: me@example.com
+
+reverse_proxy_service_host: localhost
+reverse_proxy_service_port: 9000
+
+wordpress_project_directory: /var/www/html

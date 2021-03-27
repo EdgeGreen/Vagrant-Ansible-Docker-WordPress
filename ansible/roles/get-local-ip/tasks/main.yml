@@ -1,0 +1,12 @@
+- name: Get Local IP
+  shell: hostname -I | head -n1 | cut -d " " -f1
+  register: local_ip
+
+- name: Save Local IP to file
+  local_action:
+    module: lineinfile
+    line: "local_ip: {{ local_ip.stdout }}"
+    dest: ./roles/{{ role_folder_name }}/vars/main.yml
+    create: yes
+    mode: 0655
+    state: present

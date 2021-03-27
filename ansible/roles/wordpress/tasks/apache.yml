@@ -1,0 +1,26 @@
+---
+- name: Wordpress | Apache | Copy virtual host configuration file
+  template:
+    src: apache-vhost.conf.j2
+    dest: "/etc/apache2/sites-available/{{ wp_sitename }}.conf"
+    owner: root
+    group: root
+    mode: 0644
+    
+- name: Wordpress | Apache | Copy virtual host configuration file
+  template:
+    src: ports.conf.j2
+    dest: "/etc/apache2/ports.conf"
+    owner: root
+    group: root
+    mode: 0644    
+
+- name: WordPress | Apache | Enable site
+  command: "a2ensite {{ wp_sitename }}.conf"
+
+- name: Delete default configuration 
+  file:
+    path: /etc/apache2/sites-available/000-default.conf
+    state: absent
+  notify:
+   - restart apache

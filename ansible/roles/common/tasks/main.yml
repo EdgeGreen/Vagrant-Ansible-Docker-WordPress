@@ -1,0 +1,13 @@
+---
+
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    update_cache: yes
+
+#- name: Upgrade all packages to the latest version
+#  apt:
+#    name: "*"
+#    state: latest
+
+- name: Check python 3
+  raw: bash -c "test -x /usr/bin/python3 || (apt -qqy update && apt install -qqy python3-apt)"
