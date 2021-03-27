@@ -2,19 +2,19 @@
 
 ![](!images/1.png)
 
-How to setup Vagrant with Hyper-V and WSL2.
+How to setup `Vagrant` with `Hyper-V` and `WSL2`.
 
 ## Minimal Requirements 
 
-1. Use the guide to setup WSL.
+1. Use the guide to setup `WSL`.
 
     ```sh
      https://docs.microsoft.com/en-us/windows/wsl/install-win10
     ```
 
-2. Correct the WSL issue with file permitions.
+2. Correct the `WSL` issue with file permitions.
 
-    Create a file `/ets/wsl/conf` with following content. Reboot WSL - `Restart-Service LxssManager`
+    Create a file `/etc/wsl.conf` with following content. Reboot `WSL` - `Restart-Service LxssManager`
 
     ```sh
       [automount]
@@ -33,9 +33,9 @@ How to setup Vagrant with Hyper-V and WSL2.
     ```
       ![](!images/3.PNG)
 
-4. Installing Vagrant.
+4. Installing `Vagrant`.
 
-    Vagrant must be installed in VSL and Windows. Important note - version must be the same! 
+    `Vagrant` must be installed in `WSL` and `Windows`. Important note - version must be the same! 
 
     ```sh
     # https://www.vagrantup.com/downloads.html
@@ -46,15 +46,15 @@ How to setup Vagrant with Hyper-V and WSL2.
     rm -f "$vagrant_filename"
     vagrant --version
     ```
-5. Network issues Vagrant with HyperV.
+5. Network issues `Vagrant` with `HyperV`.
 
-    Now Vagrant does't know how to work with virtual switches of the HyperV and the possibility of static addressing is absent. Select the required switch - manually. The stability of work is declared only with `Default Switch`
+    Now `1Vagrant` does't know how to work with virtual switches of the `HyperV` and the possibility of static addressing is absent. Select the required switch - manually. The stability of work is declared only with `Default Switch`
 
       ![](!images/4.PNG)
 
 6. Packets must flow :)
 
-    Run these commands in the console of PowerShell from admin
+    Run these commands in the console of `PowerShell` from `administrator`
 
     ```sh
       Set-NetIPInterface -ifAlias "vEthernet (WSL)" -Forwarding Enabled
