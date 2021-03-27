@@ -14,4 +14,3 @@ localhost ansible_connection=local
 ansible_connection=ssh 
 ansible_ssh_user=root
 ansible_ssh_pass=root
-ansible_python_interpreter=/usr/bin/python3
