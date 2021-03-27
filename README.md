@@ -18,7 +18,7 @@ How to setup Vagrant with Hyper-V and WSL2.
       [automount]
       enabled = true
       options = "metadata,umask=22,fmask=11"
-      ![](!images/2.PNG)
+      ![](images/2.PNG)
     ```
 
 3. Add this strings to your profile - `nano ~/.profile`
@@ -28,7 +28,7 @@ How to setup Vagrant with Hyper-V and WSL2.
       export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
       export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Vagrant/YourProjectCatalog"
       export PATH="$PATH:/mnt/c/Windows/system32"
-      ![](!images/3.PNG)
+      ![](images/3.PNG)
     ```
 
 4. Installing Vagrant.
@@ -49,7 +49,7 @@ How to setup Vagrant with Hyper-V and WSL2.
     Now Vagrant does't know how to work with virtual switches of the HyperV and the possibility of static addressing is absent. Select the required switch - manually. The stability of work is declared only with `Default Switch`
 
     ```sh
-      ![](!images/4.PNG)
+      ![](images/4.PNG)
     ```
 
 6. Packets must flow :)
@@ -59,7 +59,7 @@ How to setup Vagrant with Hyper-V and WSL2.
     ```sh
       Set-NetIPInterface -ifAlias "vEthernet (WSL)" -Forwarding Enabled
       Set-NetIPInterface -ifAlias "vEthernet (Default Switch)" -Forwarding Enabled
-      ![](!images/5.PNG)
+      ![](images/5.PNG)
     ```
 
 ## Useful Links.
