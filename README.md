@@ -54,7 +54,7 @@ How to setup `Vagrant` with `Hyper-V` and `WSL2`.
 
 6. Packets must flow :)
 
-    Run these commands in the console of `PowerShell` from `administrator`
+    Run these commands in the console of `PowerShell` from `Administrator`
 
     ```sh
       Set-NetIPInterface -ifAlias "vEthernet (WSL)" -Forwarding Enabled
