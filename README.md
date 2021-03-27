@@ -48,7 +48,7 @@ How to setup `Vagrant` with `Hyper-V` and `WSL2`
     ```
 5. `Vagrant` network issues  with `HyperV`.
 
-    Now `Vagrant` does't know how to work with virtual switches of the `HyperV` and the possibility of static addressing is absent. Select the required switch - manually. The stability of work is declared only with `Default Switch`
+    Now `Vagrant` does't know how to work with `HyperV` virtual switches and the possibility of static addressing is absent. Select the required switch - manually. The stability of work is declared only with `Default Switch`
 
       ![](!images/4.PNG)
 
