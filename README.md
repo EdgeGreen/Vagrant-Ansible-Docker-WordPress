@@ -2,7 +2,7 @@
 
 ![](!images/1.png)
 
-How to setup `Vagrant` with `Hyper-V` and `WSL2`.
+How to setup `Vagrant` with `Hyper-V` and `WSL2`
 
 ## Minimal Requirements 
 
