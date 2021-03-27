@@ -23,7 +23,7 @@ How to setup `Vagrant` with `Hyper-V` and `WSL2`
     ```
       ![](!images/2.PNG)
 
-3. Add this strings to your profile - `nano ~/.profile`.
+3. Add this strings to your Shell profile - `nano ~/.profile`.
 
     ```sh
       export VAGRANT_DEFAULT_PROVIDER="hyperv"
