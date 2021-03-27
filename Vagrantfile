@@ -16,10 +16,8 @@ SCRIPT
 
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
     config.vm.box = "generic/ubuntu2004"  
-    config.vm.provider "hyperv"
     config.vm.boot_timeout = 600
     config.vm.graceful_halt_timeout = 600  
-
     config.vm.hostname = "wordpress"
     config.vm.synced_folder "./ansible", "/home/vagrant/ansible/", disabled: false
 
@@ -36,13 +34,11 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     # Hyper-V
     config.vm.network "forwarded_port", guest: 8086, host: 8086
     config.vm.provider "hyperv" do |hv, override|
-        hv.linked_clone = true
-		
+        hv.linked_clone = true	
         hv.vmname = config.vm.hostname
         hv.memory = 2048
         hv.maxmemory = 4096
-        hv.cpus = 4
-		
+        hv.cpus = 4	
         hv.vm_integration_services = {
             guest_service_interface: true,
             time_synchronization: true
