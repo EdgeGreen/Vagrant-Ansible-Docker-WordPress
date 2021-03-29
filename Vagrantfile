@@ -22,8 +22,8 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     config.vm.synced_folder "./ansible", "/home/vagrant/ansible/", disabled: false
 
     # SSH Configuration
-	config.ssh.username = "vagrant"
-	config.ssh.password = "vagrant"
+    config.ssh.username = "vagrant"
+    config.ssh.password = "vagrant"
     config.ssh.insert_key = "false"
 	
     # Sytem install (root)
